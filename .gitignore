@@ -23,7 +23,9 @@
 # Generated code #
 ##################
 obj/*
-libs/*
+libs
+bin
+gen
 
 # Logs               #
 ######################
