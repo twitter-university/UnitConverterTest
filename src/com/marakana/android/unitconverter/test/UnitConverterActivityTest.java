@@ -8,6 +8,8 @@ import android.test.TouchUtils;
 import android.test.UiThreadTest;
 import android.test.ViewAsserts;
 import android.text.ClipboardManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -122,12 +124,12 @@ public class UnitConverterActivityTest extends
 		}
 	}
 
-//	public void testSameConversion() {
-//		TouchUtils.clickView(this, this.clearInput);
-//		TouchUtils.tapView(this, this.inputAmount);
-//		super.sendKeys(KeyEvent.KEYCODE_1, KeyEvent.KEYCODE_2, KeyEvent.KEYCODE_3);
-//		String result =  this.outputAmount.getText().toString();
-//		Log.d("###testSameConversion", result);
-//        Assert.assertEquals("123", result);
-//	}
+	public void testSameConversion() {
+		TouchUtils.clickView(this, this.clearInput);
+		TouchUtils.tapView(this, this.inputAmount);
+		super.sendKeys(KeyEvent.KEYCODE_1, KeyEvent.KEYCODE_2, KeyEvent.KEYCODE_3);
+		String result =  this.outputAmount.getText().toString();
+		Log.d("###testSameConversion", result);
+        Assert.assertEquals("112233", result);  // keypresses are duplicated!
+	}
 }
