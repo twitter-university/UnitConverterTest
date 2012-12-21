@@ -1,5 +1,7 @@
 package com.marakana.android.unitconverter.test;
 
+import junit.framework.Assert;
+
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
@@ -46,7 +48,7 @@ public class UnitConverterActivityTest extends
 		this.clearInput = this.activity.findViewById(R.id.clear_input);
 		this.copyResult = this.activity.findViewById(R.id.copy_result);
 	}
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -55,28 +57,28 @@ public class UnitConverterActivityTest extends
 	}
 
 	public void testPreConditions() {
-		super.assertNotNull(this.category);
-		super.assertNotNull(this.category.getOnItemSelectedListener());
-		super.assertEquals(UnitConversionCategory.values().length,
+	    Assert.assertNotNull(this.category);
+	    Assert.assertNotNull(this.category.getOnItemSelectedListener());
+	    Assert.assertEquals(UnitConversionCategory.values().length,
 				this.category.getAdapter().getCount());
 
-		super.assertNotNull(this.inputUnit);
-		super.assertNotNull(this.inputUnit.getOnItemSelectedListener());
-		super.assertTrue(this.inputUnit.getAdapter().getCount() > 0);
+		Assert.assertNotNull(this.inputUnit);
+		Assert.assertNotNull(this.inputUnit.getOnItemSelectedListener());
+		Assert.assertTrue(this.inputUnit.getAdapter().getCount() > 0);
 
-		super.assertNotNull(this.outputUnit);
-		super.assertNotNull(this.outputUnit.getOnItemSelectedListener());
-		super.assertTrue(this.outputUnit.getAdapter().getCount() > 0);
+		Assert.assertNotNull(this.outputUnit);
+		Assert.assertNotNull(this.outputUnit.getOnItemSelectedListener());
+		Assert.assertTrue(this.outputUnit.getAdapter().getCount() > 0);
 
-		super.assertNotNull(this.inputAmount);
-		super.assertEquals("1", this.inputAmount.getText().toString());
+		Assert.assertNotNull(this.inputAmount);
+		Assert.assertEquals("1", this.inputAmount.getText().toString());
 
-		super.assertNotNull(this.outputAmount);
-		super.assertEquals("1", this.outputAmount.getText().toString());
+		Assert.assertNotNull(this.outputAmount);
+		Assert.assertEquals("1", this.outputAmount.getText().toString());
 
-		super.assertNotNull(this.reverseUnits);
-		super.assertNotNull(this.clearInput);
-		super.assertNotNull(this.copyResult);
+		Assert.assertNotNull(this.reverseUnits);
+		Assert.assertNotNull(this.clearInput);
+		Assert.assertNotNull(this.copyResult);
 	}
 
 	public void testViewsVisible() {
@@ -101,11 +103,11 @@ public class UnitConverterActivityTest extends
 		this.activity.finish();
 		this.loadActivity();
 
-		super.assertEquals(1, this.category.getSelectedItemPosition());
-		super.assertEquals(2, this.inputUnit.getSelectedItemPosition());
-		super.assertEquals(3, this.outputUnit.getSelectedItemPosition());
-		super.assertEquals("123", this.inputAmount.getText().toString());
-		super.assertEquals(result, this.outputAmount.getText().toString());
+		Assert.assertEquals(1, this.category.getSelectedItemPosition());
+		Assert.assertEquals(2, this.inputUnit.getSelectedItemPosition());
+		Assert.assertEquals(3, this.outputUnit.getSelectedItemPosition());
+		Assert.assertEquals("123", this.inputAmount.getText().toString());
+		Assert.assertEquals(result, this.outputAmount.getText().toString());
 	}
 
 	public void testCopyResult() {
@@ -115,7 +117,7 @@ public class UnitConverterActivityTest extends
 		try {
 			clipboard.setText("12345");
 			TouchUtils.clickView(this, this.copyResult);
-			super.assertEquals("1", clipboard.getText());
+			Assert.assertEquals("1", clipboard.getText());
 		} finally {
 			clipboard.setText(current);
 		}
@@ -125,6 +127,6 @@ public class UnitConverterActivityTest extends
 		TouchUtils.clickView(this, this.clearInput);
 		TouchUtils.tapView(this, this.inputAmount);
 		super.sendKeys(KeyEvent.KEYCODE_1, KeyEvent.KEYCODE_2, KeyEvent.KEYCODE_3);
-		super.assertEquals("123", this.outputAmount.getText().toString());
+		Assert.assertEquals("123", this.outputAmount.getText().toString());
 	}
 }
